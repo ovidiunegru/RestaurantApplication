@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Restaurant Aplication</string>
+    <string name="restaurant_icon_content_description">"Description description description description description description "</string>
 </resources>

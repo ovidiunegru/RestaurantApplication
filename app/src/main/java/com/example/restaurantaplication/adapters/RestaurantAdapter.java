@@ -1,4 +1,4 @@
-package com.example.restaurantaplication;
+package com.example.restaurantaplication.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,21 +11,22 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.restaurantaplication.Model.Item;
+import com.example.restaurantaplication.R;
+import com.example.restaurantaplication.models.Restaurant;
+import com.example.restaurantaplication.interfaces.RecyclerViewClickInterface;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
+public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ItemViewHolder> {
 
-    private ArrayList<Item> items;
+    private List<Restaurant> restaurantsList;
     private Context context;
     private RecyclerViewClickInterface recyclerViewClickInterface;
 
-    public ItemAdapter(ArrayList<Item> items, Context context, RecyclerViewClickInterface recyclerViewClickInterface) {
-        this.items = items;
+    public RestaurantAdapter(List<Restaurant> restaurantsList, Context context, RecyclerViewClickInterface recyclerViewClickInterface) {
+        this.restaurantsList = restaurantsList;
         this.context = context;
         this.recyclerViewClickInterface=recyclerViewClickInterface;
-        //notifyDataSetChanged();
     }
 
     @NonNull
@@ -37,20 +38,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        final Item item = items.get(position);
-
-        //holder.image.setImageDrawable(ContextCompat.getDrawable(context,item.getIcon()));
-        Glide.with(context).load(item.getIcon(0)).into(holder.image);
-        holder.title.setText(item.getTitle());
-        holder.subTitle.setText(item.getSubtitle());
-
-
+        final Restaurant restaurant = restaurantsList.get(position);
+        Glide.with(context).load(restaurant.getImagePath()).into(holder.image);
+        holder.title.setText(restaurant.getName());
+        holder.subTitle.setText(restaurant.getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return restaurantsList.size();
     }
+
 
      class ItemViewHolder extends RecyclerView.ViewHolder {
         private AppCompatImageView image;

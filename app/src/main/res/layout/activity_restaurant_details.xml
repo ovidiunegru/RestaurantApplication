@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".restaurants.RestaurantDetailsActivity">
+    tools:context=".restaurantActivities.RestaurantDetailsActivity">
 
 
     <ImageView
@@ -82,7 +82,7 @@
         android:layout_marginTop="@dimen/padding_8"
         android:layout_marginLeft="@dimen/padding_16"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

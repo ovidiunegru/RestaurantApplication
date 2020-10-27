@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.restaurantaplication.restaurants.RestaurantsActivity;
+import com.example.restaurantaplication.restaurantActivities.RestaurantsActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

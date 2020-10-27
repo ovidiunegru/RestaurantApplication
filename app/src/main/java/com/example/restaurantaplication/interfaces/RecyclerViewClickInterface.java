@@ -1,6 +1,5 @@
-package com.example.restaurantaplication;
+package com.example.restaurantaplication.interfaces;
 
 public interface RecyclerViewClickInterface {
     void onItemClick(int position);
-    void onLongItemClick(int position);
 }

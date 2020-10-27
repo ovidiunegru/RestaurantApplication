@@ -1,4 +1,4 @@
-package com.example.restaurantaplication.restaurants;
+package com.example.restaurantaplication.restaurantActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -6,17 +6,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 
-import com.example.restaurantaplication.Model.Item;
+import com.example.restaurantaplication.adapters.ImageAdapter;
+import com.example.restaurantaplication.models.Photo;
+import com.example.restaurantaplication.models.Restaurant;
 import com.example.restaurantaplication.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import static com.example.restaurantaplication.restaurants.RestaurantsActivity.RESTAURANT_BUNDLE;
+import static com.example.restaurantaplication.restaurantActivities.RestaurantsActivity.RESTAURANT_BUNDLE;
 
 public class RestaurantDetailsActivity extends AppCompatActivity {
 
-    private Item item;
+    private Restaurant restaurant;
+    private List<Photo> photos;
     private AppCompatTextView title;
     private AppCompatTextView description;
 
@@ -31,16 +35,18 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
-            item=(Item)bundle.getSerializable(RESTAURANT_BUNDLE);
+            restaurant=(Restaurant) bundle.getSerializable(RESTAURANT_BUNDLE);
         }
 
         title=findViewById(R.id.restaurant_details_title);
         description=findViewById(R.id.restaurant_details_description);
+        description.setMovementMethod(new ScrollingMovementMethod());
 
-        title.setText(item.getTitle());
-        description.setText(item.getSubtitle());
+        title.setText(restaurant.getName());
+        description.setText(restaurant.getDescription());
+        photos=restaurant.getPhotos();
 
-        ImageAdapter imageAdapter = new ImageAdapter(item,getBaseContext());
+        ImageAdapter imageAdapter = new ImageAdapter(photos,getBaseContext());
         recyclerView.setAdapter(imageAdapter);
     }
 

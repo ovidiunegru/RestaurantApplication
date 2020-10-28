@@ -10,6 +10,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def secureProp = new Properties()
+        if(file("../secure.properties").exists()){
+            file("../secure.properties")?.withInputStream {secureProp.load(it)}
+        }
+        resValue "string","maps_api_key",(secureProp.getProperty("MAPS_API_KEY") ?: "")
     }
     buildTypes {
         release {
@@ -44,4 +50,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }
